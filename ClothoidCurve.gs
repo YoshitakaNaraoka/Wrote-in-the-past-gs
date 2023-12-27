@@ -1,4 +1,4 @@
-/*function drawClothoidCurve(a, b, stepSize) {
+function drawClothoidCurve(a, b, stepSize) {
   var canvas = DocumentApp.getActiveDocument().getBody().appendCanvas(600, 600);
   var ctx = canvas.getContext('2d');
 
@@ -25,4 +25,3 @@ function testClothoidCurve() {
 
   drawClothoidCurve(a, b, stepSize);
 }
-*/

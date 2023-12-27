@@ -1,4 +1,3 @@
-/*
 function addSheet4() {
   //コンテナバインド型で紐付いたスプレッドシートを読み込む
   var mySpreadSheet = SpreadsheetApp.getActiveSpreadsheet();
@@ -13,4 +12,3 @@ function addSheet4() {
     mySpreadSheet.insertSheet(sheetName);
   }
 }
-*/

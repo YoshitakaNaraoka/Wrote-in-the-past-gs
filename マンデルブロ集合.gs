@@ -1,4 +1,3 @@
-/*
 function generateMandelbrotSet() {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
 
@@ -110,4 +109,3 @@ function refinePixelValue(pixelValue, maxIterations) {
   
   return refinedValue;
 }
-*/

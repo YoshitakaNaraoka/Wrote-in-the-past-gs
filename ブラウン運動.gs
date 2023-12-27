@@ -1,4 +1,4 @@
-/*
+
 function addSheet2() {
   var spreadsheet = SpreadsheetApp.getActive();
   spreadsheet.insertSheet(1);
@@ -63,8 +63,7 @@ function createBrownianMotionGraph() {
   sheet.insertChart(chart);
 }
 
-/*function randomStep(stepSize) {
+function randomStep(stepSize) {
   // ランダムなステップサイズを生成
   return (Math.random() - 0.5) * stepSize * 2;
 }
-*/

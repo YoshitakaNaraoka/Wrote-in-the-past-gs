@@ -1,4 +1,3 @@
-/*
 function doPost(e) {
 
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("シート1");
@@ -36,10 +35,9 @@ json.forEach((obj)=>{
     });
   });
   
-}*/
+}
 
-/*
-function doPost(e) {
+function doPost1(e) {
 
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('a');
   
@@ -54,9 +52,8 @@ function doPost(e) {
   sheet.getRange(2, 2).setValue(id);     // temp_1を記録
   sheet.getRange(2, 3).setValue(temp);     // temp_2を記録
 }
-*/
 
-/*function doPost2(e){
+function doPost2(e){
   var param2 = e.postData.getDataAsString();//データ取得
   var ary2 = param2.split(',');//取得データをカンマで区切ってaryに格納
  
@@ -82,7 +79,7 @@ function doPost(e) {
  
   var spreadsheet = SpreadsheetApp.openById(SS_ID);//あらためてSpreadSheetを開く
   var newSheet = spreadsheet.getSheetByName(sheetName);//同じシート名があるかチェック
-　if(!newSheet){
+  if(!newSheet){
    newSheet= spreadsheet.insertSheet(sheetName,0);//シートがなければ新規作成
   }
  
@@ -114,9 +111,8 @@ function doPost(e) {
   .build();
  
   newSheet.insertChart(myChart);
-}*/
+}
 
-/*
 function myFunction() {
 
   const spreadsheetId = '1QENCIAzqhwevjOr2r8m2tagcoSZGK6Inj3E40HmNBnY';
@@ -143,9 +139,7 @@ function myFunction() {
     });
   });
 }
-*/
 
-/*
 function myFunction5() {
   
   const sheet5 = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("シート1");
@@ -158,9 +152,7 @@ function myFunction5() {
     });
   });
 }
-*/
 
-/*
 function myFunction6(e) {
 
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("シート4");
@@ -180,9 +172,8 @@ function myFunction6(e) {
         sheet.getRange(lastRow, index+1).setValue(obj[key]);
     });
   });
-}*/
+}
 
-/*
 function doPost(e) {
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("シート4");
   var params = JSON.parse(e.postData.getDataAsString());
@@ -201,9 +192,8 @@ function doPost(e) {
   sheet.getRange(2, 1).setValue(new Date());     // 受信日時を記録
   sheet.getRange(2, 2).setValue(id);     // IDを記録
   sheet.getRange(2, 3).setValue(temp);     // tempを記録
-}*/
+}
 
-/*
 function doPost(e) {
   // スプレッドシートオブジェクトを取得
   var ss = SpreadsheetApp.getActive();
@@ -228,9 +218,7 @@ function doPost(e) {
     sheet.getRange(lastRow+1, setCol).setValue(Others);
   }
 }
-*/
 
-/*
 function doPost(e) {
   // スプレッドシートオブジェクトを取得
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("シート1");
@@ -254,9 +242,7 @@ function doPost(e) {
     sheet.getRange(lastRow+1, setCol).setValue(Others);
   }
 }
-*/
 
-/*
 function doPost(e) {
 
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('a');
@@ -272,9 +258,7 @@ function doPost(e) {
   sheet.getRange(2, 2).setValue(id);     // temp_1を記録
   sheet.getRange(2, 3).setValue(temp);     // temp_2を記録
 }
-*/
 
-/*
 function doPost(e) {
 
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('a');
@@ -293,9 +277,7 @@ function doPost(e) {
     });
   });
 }
-*/
 
-/*
 function doPost(e) {
 
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("シート1");
@@ -312,9 +294,7 @@ function doPost(e) {
   sheet.getRange(2, 3).setValue(jsonArray[2]);     // tempを記録
   sheet.getRange(2, 4).setValue(jsonArray[3]);
 }
-*/
 
-/*
 function doPost(e) {
 
   const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("極座標変換");
@@ -338,4 +318,3 @@ function doPost(e) {
   sheet.getRange(1, 6).setValue(jsonArray[5]);
   sheet.getRange(1, 7).setValue(jsonArray[6]);
 }
-*/

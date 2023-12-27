@@ -40,7 +40,6 @@ var chart_Wiener = sheet_Wiener.newChart()
 
 //var rowcollapse1 = sheetgetrange1.shiftRowGroupDepth(1);
 
-/*
 function cellchoice() {
   var sheet = SpreadsheetApp.getActiveSheet();
   var lastRow = sheet.getLastRow();
@@ -50,4 +49,3 @@ function cellchoice() {
   }
   sheet.getRange("A1:B100").setValues(ary1);
 }
-*/

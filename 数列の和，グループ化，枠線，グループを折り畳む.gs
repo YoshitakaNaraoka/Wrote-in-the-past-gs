@@ -1,4 +1,3 @@
-/*
 function myFunction1() {
   var spreadsheet = SpreadsheetApp.getActive();
   //sheetのアクティブ化(取得)
@@ -23,4 +22,3 @@ function myFunction3() {
   spreadsheet.getActiveSheet().getRowGroup(11, 1).collapse();
   //.collapse() は，グループを折り畳む
 };
-*/

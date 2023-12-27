@@ -1,4 +1,3 @@
-/*
 function generateLogisticMapData(r, x0, iterations) {
   var data = [];
   var x = x0;
@@ -30,4 +29,3 @@ function drawLogisticMapChart() {
   
   sheet.insertChart(chart);
 }
-*/

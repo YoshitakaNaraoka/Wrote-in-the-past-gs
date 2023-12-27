@@ -1,4 +1,3 @@
-/*
 function calculateDLVOPotential() {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   
@@ -13,4 +12,3 @@ function calculateDLVOPotential() {
   // 結果をセルに出力
   sheet.getRange("A4").setValue(repulsion);
 }
-*/

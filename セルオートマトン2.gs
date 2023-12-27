@@ -6,7 +6,7 @@
  * @return {Array} セルの状態を格納した配列
  */
 
-/*
+
 function simulateCellularAutomaton(rule, numGenerations) {
   var numCells = 100; // セルの数
   var cells = []; // セルの状態を格納する配列
@@ -34,7 +34,7 @@ function simulateCellularAutomaton(rule, numGenerations) {
 
   return cells;
 }
-*/
+
 
 /**
  * ルールに基づいて次の状態を計算する関数
@@ -45,10 +45,9 @@ function simulateCellularAutomaton(rule, numGenerations) {
  * @return {number} 次の状態
  */
 
-/*
+
 function applyRule(left, center, right, rule) {
   var pattern = "" + left + center + right;
   var ruleIndex = parseInt(pattern, 2);
   return parseInt(rule.charAt(ruleIndex));
 }
-*/

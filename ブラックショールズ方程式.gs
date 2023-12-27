@@ -1,4 +1,3 @@
-/*
 function calculateOptionPrice() {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   
@@ -109,4 +108,3 @@ function erf(x) {
 
   return sign * erfValue;
 }
-*/

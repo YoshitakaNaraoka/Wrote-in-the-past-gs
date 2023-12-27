@@ -1,4 +1,3 @@
-/*
 function poissonDistribution(lambda, n) {
   var lambda = 5;
   var n = 100;
@@ -41,9 +40,8 @@ var chart_PoissonDistribution = sheet_PoissonDistribution.newChart()
   .build();
   sheet_PoissonDistribution.insertChart(chart_PoissonDistribution);
 
-/*
+
 function testPoissonDistribution() {
   var probability = poissonDistribution(lambda, x);
   
 }
-*/

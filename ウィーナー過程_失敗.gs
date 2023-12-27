@@ -1,4 +1,3 @@
-/*
 function simulateWienerProcess(n) {
   var wienerProcess = [0]; // 初期値
   for (var i = 1; i < n; i++) {
@@ -17,7 +16,6 @@ var wienerProcess = simulateWienerProcess(n);
 // シミュレーション結果のログ出力
 console.log(wienerProcess);
 
-/*
 function cellchoice() {
   var sheet = SpreadsheetApp.getActiveSheet();
   var lastRow = sheet.getLastRow();
@@ -27,4 +25,3 @@ function cellchoice() {
   }
   sheet.getRange("A1:B100").setValues(ary1);
 }
-*/

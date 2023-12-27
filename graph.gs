@@ -1,4 +1,3 @@
-/*
 function graph1(){
   const sheetgetrange3 = sheet_GumowskiMirna.getRange(1, 1, data.length, 2);
   var chart_GumouskiMirna = sheet_Graph.newChart()
@@ -14,4 +13,3 @@ function graph1(){
   .build();
   sheet_Graph.insertChart(chart_GumouskiMirna);
 }
-*/

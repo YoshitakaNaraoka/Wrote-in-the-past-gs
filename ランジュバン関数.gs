@@ -1,4 +1,3 @@
-/*
 function createLennardJonesGraph() {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   
@@ -36,4 +35,3 @@ function calculateLennardJonesValue(x, epsilon, sigma) {
   var ljValue = 4 * epsilon * ((Math.pow(r, 12)) - (Math.pow(r, 6)));
   return ljValue;
 }
-*/

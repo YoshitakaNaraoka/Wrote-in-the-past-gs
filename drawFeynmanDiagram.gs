@@ -1,4 +1,3 @@
-/*
 function drawFeynmanDiagram() {
   var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   
@@ -23,4 +22,3 @@ function drawFeynmanDiagram() {
   var file = DriveApp.createFile(sheet.getBlob());
   ui.alert('Feynman Diagram has been created and saved as ' + file.getName());
 }
-*/

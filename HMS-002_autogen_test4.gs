@@ -1,4 +1,4 @@
-/*function getTodayDate() {
+function getTodayDate() {
     //Dateオブジェクトからインスタンスを生成
     const today = new Date();
     //メソッドを使って、本日の日付を取得
@@ -81,4 +81,3 @@ function getTodayDate() {
 //追加挿入したシートに名前を設定
 Sheet.setName("this_month");
 }
-*/
