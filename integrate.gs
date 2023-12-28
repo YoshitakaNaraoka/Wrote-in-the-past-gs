@@ -24,10 +24,3 @@ function simulateIntegrateProcess(n_integrateStepSize) {
   sheet_integrate.getRange('D2').activate();
   sheet_integrate.getCurrentCell().setFormula('=SEQUENCE("'+n_integrateStepSize+'",1,0,1)');
   
-  /*
-  sheet_integrate.getRange('F2').activate();
-  sheet_integrate.getCurrentCell().setFormula('=SUM(E2:E301)');
-  sheet_integrate.getRange('G2').activate();
-  sheet_integrate.getCurrentCell().setFormula('=SERIESSUM("'+n_integrateStepSize+'","'+degree+'","F2","A2:A6")');
-  */ 
-  //最後にSERIESSUMを入れてもダメ いちいち書き出せ

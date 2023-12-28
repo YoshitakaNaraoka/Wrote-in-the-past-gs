@@ -25,11 +25,6 @@ function a() {
   sheet.insertChart(chart);
 };
 
-function myFunction() {
-  var spreadsheet = SpreadsheetApp.getActive();
-  spreadsheet.getCurrentCell().offset(31, 7).activate();
-};
-
 function macro1() {
   var spreadsheet = SpreadsheetApp.getActive();
   spreadsheet.getCurrentCell().offset(0, -4).activate();

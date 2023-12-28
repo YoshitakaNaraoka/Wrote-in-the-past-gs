@@ -318,3 +318,17 @@ function doPost(e) {
   sheet.getRange(1, 6).setValue(jsonArray[5]);
   sheet.getRange(1, 7).setValue(jsonArray[6]);
 }
+
+function myFunction2() {
+  var spreadsheet = SpreadsheetApp.getActive();
+  spreadsheet.getRange('A1:A10').activate()
+  .shiftRowGroupDepth(1);
+  //列のグループ化
+  spreadsheet.getActiveRangeList().setBorder(true, true, true, true, null, null, '#000000', SpreadsheetApp.BorderStyle.SOLID);
+};
+
+function myFunction3() {
+  var spreadsheet = SpreadsheetApp.getActive();
+  spreadsheet.getActiveSheet().getRowGroup(11, 1).collapse();
+  //.collapse() は，グループを折り畳む
+};

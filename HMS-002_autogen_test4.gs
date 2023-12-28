@@ -10,17 +10,9 @@ function getTodayDate() {
 function addSheet3() {
   //コンテナバインド型で紐付いたスプレッドシートを読み込む
   let mySheet = SpreadsheetApp.getActiveSpreadsheet();
-  //スプレッドシートに新しいシートを追加挿入
-  let newSheet = mySheet.insertSheet();
   //追加挿入したシートに名前を設定
-  mySheet.setName(this_month);
+  mySheet.insertSheet().setName(this_month);
 }
-
-function addSheet3() {
-//コンテナバインド型で紐付いたスプレッドシートを読み込む
-let mySheet = SpreadsheetApp.getActiveSpreadsheet();
-//スプレッドシートに新しいシートを追加挿入
-let newSheet = mySheet.insertSheet();
 
 function getTodayDate() {
   //Dateオブジェクトからインスタンスを生成
@@ -42,7 +34,6 @@ function numberToString() {
 
 //追加挿入したシートに名前を設定
 newSheet.setName('num');
-}
 
 function addSheet3() {
 //コンテナバインド型で紐付いたスプレッドシートを読み込む
