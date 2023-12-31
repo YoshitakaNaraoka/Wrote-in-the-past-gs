@@ -332,3 +332,414 @@ function myFunction3() {
   spreadsheet.getActiveSheet().getRowGroup(11, 1).collapse();
   //.collapse() は，グループを折り畳む
 };
+
+function addSheet4() {
+  //コンテナバインド型で紐付いたスプレッドシートを読み込む
+  var mySpreadSheet = SpreadsheetApp.getActiveSpreadsheet();
+  // シート名を取得
+  var sheetName = dayjs.dayjs().format('YYYY.MM');
+  
+  // シートを取得
+  var targetSheet = mySpreadSheet.getSheetByName(sheetName);
+  if (targetSheet == null) {
+    // スプレッドシートに新しいシートを追加挿入
+    // 名前を指定
+    mySpreadSheet.insertSheet(sheetName);
+  }
+};
+
+function calculateDLVOPotential() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  
+  // パラメータの取得
+  var A = sheet.getRange("A1").getValue(); // 斥力の強度を表す定数
+  var k = sheet.getRange("A2").getValue(); // 距離に関連する定数
+  var h = sheet.getRange("A3").getValue(); // 粒子間の距離
+  
+  // ポテンシャルエネルギーの計算
+  var repulsion = A * Math.exp(-k * h); // 斥力項の計算
+  
+  // 結果をセルに出力
+  sheet.getRange("A4").setValue(repulsion);
+};
+
+function simulateIntegrateProcess(n_integrateStepSize) {
+  var integrateProcess = [0]; //初期値
+  for (var i = 1; i < n_integrateStepSize; i++) {
+    var x = x;
+    var y = sheet_integrate.getRange("B4:C4").activate();
+    var y = '${y}';
+    var integrate_x_y = 1/(y+1) * Math.pow(x,y+1);
+    let rangeactivate = sheet_integrate.getRange(i+1,5,1).activate();
+    //sheet_integrate.getRange('F2').activate();
+    //sheet_integrate.getCurrentCell().setFormula('=SUM(E2:E301)');
+    sheet_integrate.getRange('$G2').activate();
+    sheet_integrate.getCurrentCell().setFormula('=SERIESSUM("'+n_integrateStepSize+'","'+degree+'",1,"A2:A6")');
+    sheet_integrate.getActiveRangeList().setValue(integrate_x_y);
+    integrateProcess.push(integrate_x_y);
+  }
+
+  return integrateProcess;
+
+  let n_integrateStepSize = 300;
+  let degree = 6;
+  var integrateProcess = simulateIntegrateProcess(n_integrateStepSize);
+  
+  sheet_integrate.getRange('D2').activate();
+  sheet_integrate.getCurrentCell().setFormula('=SEQUENCE("'+n_integrateStepSize+'",1,0,1)');
+};
+
+function myFunction() {
+  var spreadsheet = SpreadsheetApp.getActive();
+  spreadsheet.getRange('A1').activate();
+  spreadsheet.getCurrentCell().setValue('1');
+  spreadsheet.getRange('A2').activate();
+};
+
+function a() {
+  var spreadsheet = SpreadsheetApp.getActive();
+  spreadsheet.getRange('A1').activate();
+  spreadsheet.getCurrentCell().setFormula('=SEQUENCE(300,1,0,1)');
+  spreadsheet.getRange('A1:B300').activate();
+  var sheet = spreadsheet.getActiveSheet();
+  var chart = sheet.newChart()
+  .asLineChart()
+  .addRange(spreadsheet.getRange('A1:B300'))
+  .setMergeStrategy(Charts.ChartMergeStrategy.MERGE_COLUMNS)
+  .setTransposeRowsAndColumns(false)
+  .setNumHeaders(0)
+  .setHiddenDimensionStrategy(Charts.ChartHiddenDimensionStrategy.IGNORE_BOTH)
+  .setOption('useFirstColumnAsDomain', true)
+  .setOption('isStacked', 'false')
+  .setPosition(285, 3, 17, 16)
+  .build();
+  sheet.insertChart(chart);
+};
+
+function macro1() {
+  var spreadsheet = SpreadsheetApp.getActive();
+  spreadsheet.getCurrentCell().offset(0, -4).activate();
+  spreadsheet.getCurrentCell().setFormulaR1C1('=R[0]C[-1]/R[0]C[-3]');
+  spreadsheet.getCurrentCell().offset(-1, 0).activate();
+  spreadsheet.getCurrentCell().setFormulaR1C1('=R[1]C[-1]+R[0]C[-1]');
+};
+
+function createLennardJonesGraph() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  
+  // パラメータの設定
+  var epsilon = 1.0; // ε（エネルギースケール）
+  var sigma = 1.0; // σ（距離スケール）
+  
+  // グラフの範囲設定
+  var xMin = 0.5;
+  var xMax = 3.0;
+  var stepSize = 0.1;
+  
+  // グラフデータの作成
+  var data = [];
+  var x = xMin;
+  while (x <= xMax) {
+    var ljValue = calculateLennardJonesValue(x, epsilon, sigma);
+    data.push([x, ljValue]);
+    x += stepSize;
+  }
+  
+  // グラフ作成
+  var chart = sheet.newChart()
+    .setChartType(Charts.ChartType.LINE)
+    .addRange(sheet.getRange(1, 1, data.length, 2))
+    .setPosition(1, 4, 0, 0)
+    .build();
+  
+  // グラフをシートに挿入
+  sheet.insertChart(chart);
+}
+
+function calculateLennardJonesValue(x, epsilon, sigma) {
+  var r = sigma / x;
+  var ljValue = 4 * epsilon * ((Math.pow(r, 12)) - (Math.pow(r, 6)));
+  return ljValue;
+}
+
+function calculateImpulseResponse() {
+
+  // 入力パラメータの設定
+  var systemCoefficients = [1, -0.5, 0.25, -0.125]; // 系の係数
+  
+  // 応答計算のための初期化
+  var inputSignal = [1]; // 入力信号（インパルス関数）
+  var outputSignal = []; // 出力信号
+  
+  // 衝撃関数の計算
+  for (var i = 0; i < inputSignal.length; i++) {
+    var output = 0;
+    for (var j = 0; j < systemCoefficients.length; j++) {
+      if (i - j >= 0) {
+        output += systemCoefficients[j] * inputSignal[i - j];
+      }
+    }
+    outputSignal.push(output);
+  }
+  
+  // 結果をシートに出力
+  var range_impulse = sheet_Impulse.getRange(1, 1, outputSignal.length, 1);
+  range_impulse.setValues(outputSignal.map(function(value) {
+    return [value];
+  }));
+}
+
+function calculateGreensFunction() {
+  
+  // 入力パラメータの設定
+  var length = 1; // 領域の長さ
+  var numPoints = 100; // データポイントの数
+  var time = 1; // 時間
+  
+  // 初期条件と境界条件の設定
+  var initialCondition = function(x) {
+    return Math.sin(Math.PI * x / length);
+  };
+  var boundaryCondition = function(t) {
+    return 0;
+  };
+  
+  // データの作成
+  var data = [];
+  var dx = length / (numPoints - 1);
+  for (var i = 0; i < numPoints; i++) {
+    var x = i * dx;
+    var sum = 0;
+    for (var j = 1; j <= numPoints; j++) {
+      var lambda = j * Math.PI / length;
+      var eigenfunction = Math.sin(lambda * x);
+      var timeFactor = Math.exp(-lambda * lambda * time);
+      var coefficient = 2 / length * initialCondition(lambda) * eigenfunction * timeFactor;
+      sum += coefficient;
+    }
+    var boundaryTerm = boundaryCondition(time);
+    data.push([x, sum + boundaryTerm]);
+  }
+  
+  // グラフ作成
+  var chart_Green = sheet_Green.newChart()
+    .setChartType(Charts.ChartType.LINE)
+    .addRange(sheet_Green.getRange(1, 1, data.length, 2))
+    .setPosition(1, 4, 0, 0)
+    .build();
+  
+  // グラフをシートに挿入
+  sheet_Green.insertChart(chart_Green);
+}
+
+function getTodayDate() {
+  //Dateオブジェクトからインスタンスを生成
+  const today = new Date();
+  //メソッドを使って、本日の日付を取得
+  const year = today.getFullYear(); //年
+  const month = today.getMonth()+1; //月
+  let this_month = String("yyyy.mm");
+}
+
+function addSheet3() {
+//コンテナバインド型で紐付いたスプレッドシートを読み込む
+let mySheet = SpreadsheetApp.getActiveSpreadsheet();
+//追加挿入したシートに名前を設定
+mySheet.insertSheet().setName(this_month);
+}
+
+function getTodayDate() {
+//Dateオブジェクトからインスタンスを生成
+const today = new Date();
+
+//メソッドを使って、本日の日付を取得
+const year = today.getFullYear(); //年
+const month = today.getMonth()+1; //月
+}
+
+function numberToString() {
+//数値型の変数を定義する
+let num = month;
+//そのまま数値としてログ表示
+Logger.log(num);
+//toStringメソッドで数値を文字列に変換
+Logger.log(num.toString());
+}
+
+//追加挿入したシートに名前を設定
+newSheet.setName('num');
+
+function addSheet3() {
+//コンテナバインド型で紐付いたスプレッドシートを読み込む
+let mySheet = SpreadsheetApp.getActiveSpreadsheet();
+//スプレッドシートに新しいシートを追加挿入
+let newSheet = mySheet.insertSheet();
+
+function getTodayDate() {
+//Dateオブジェクトからインスタンスを生成
+const today = new Date();
+
+//メソッドを使って、本日の日付を取得
+const year = today.getFullYear(); //年
+const month = today.getMonth()+1; //月
+
+//追加挿入したシートに名前を設定
+newSheet.setName('month');
+}}
+
+function addSheet3() {
+//コンテナバインド型で紐付いたスプレッドシートを読み込む
+let mySheet = SpreadsheetApp.getActiveSpreadsheet();
+//スプレッドシートに新しいシートを追加挿入
+let newSheet = mySheet.insertSheet();
+let sheetName = mySheet.getSheetName();
+
+function getTodayDate() {
+//Dateオブジェクトからインスタンスを生成
+const today = new Date();
+//メソッドを使って、本日の日付を取得
+const year = today.getFullYear(); //年
+const month = today.getMonth()+1; //月
+var this_month = String("yyyy.m");
+}
+
+//追加挿入したシートに名前を設定
+Sheet.setName("this_month");
+}
+
+function drawClothoidCurve(a, b, stepSize) {
+  var canvas = DocumentApp.getActiveDocument().getBody().appendCanvas(600, 600);
+  var ctx = canvas.getContext('2d');
+
+  ctx.translate(canvas.getWidth() / 2, canvas.getHeight() / 2);
+  ctx.scale(50, 50);
+
+  ctx.beginPath();
+  ctx.moveTo(0, 0);
+
+  var tMax = a / Math.sqrt(b);
+  for (var t = 0; t <= tMax; t += stepSize) {
+    var x = Math.cos((a * t * t) / 2);
+    var y = Math.sin((a * t * t) / 2);
+    ctx.lineTo(x, y);
+  }
+
+  ctx.stroke();
+}
+
+function testClothoidCurve() {
+  var a = 1;
+  var b = 1;
+  var stepSize = 0.01;
+
+  drawClothoidCurve(a, b, stepSize);
+}
+
+function drawFeynmanDiagram() {
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  
+  // グラフ描画の準備
+  var ui = SpreadsheetApp.getUi();
+  var drawing = sheet.newDrawing();
+  
+  // ダイアグラムの描画
+  var diagram = drawing
+    .appendShape(SpreadsheetApp.drawing.ShapeType.LINE, 0, 0, 100, 100)
+    .appendShape(SpreadsheetApp.drawing.ShapeType.LINE, 100, 0, 0, 100)
+    .appendShape(SpreadsheetApp.drawing.ShapeType.ELLIPSE, 0, 0, 100, 100)
+    .setShapeForeground(0, 0, 0, 0) // 透明化
+    .setShapeForeground(1, 0, 0, 0) // 透明化
+    .setShapeForeground(2, 255, 255, 255); // 白色に設定
+  
+  // グラフをシートに挿入
+  drawing.setPosition(1, 4, 0, 0);
+  sheet.updateDrawing(drawing.build());
+  
+  // ダイアグラムの保存
+  var file = DriveApp.createFile(sheet.getBlob());
+  ui.alert('Feynman Diagram has been created and saved as ' + file.getName());
+}
+
+function graph1(){
+  const sheetgetrange3 = sheet_GumowskiMirna.getRange(1, 1, data.length, 2);
+  var chart_GumouskiMirna = sheet_Graph.newChart()
+  .asScatterChart()
+  .addRange(sheetgetrange3)
+  .setMergeStrategy(Charts.ChartMergeStrategy.MERGE_COLUMNS)
+  .setTransposeRowsAndColumns(false)
+  .setNumHeaders(0)
+  .setHiddenDimensionStrategy(Charts.ChartHiddenDimensionStrategy.IGNORE_BOTH)
+  .setOption('useFirstColumnAsDomain', true)
+  .setOption('isStacked', 'false')
+  .setPosition(1, 3, 17, 16)
+  .build();
+  sheet_Graph.insertChart(chart_GumouskiMirna);
+}
+
+function generateLogisticMapData(r, x0, iterations) {
+  var data = [];
+  var x = x0;
+  
+  for (var i = 0; i < iterations; i++) {
+    data.push([i, x]);
+    x = r * x * (1 - x);
+  }
+  
+  return data;
+}
+
+function drawLogisticMapChart() {
+  var r = 3.5; // パラメータ r の値
+  var x0 = 0.1; // 初期値 x0 の値
+  var iterations = 100; // イテレーション回数
+  
+  var data = generateLogisticMapData(r, x0, iterations);
+  
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  sheet.clear();
+  sheet.getRange(1, 1, data.length, 2).setValues(data);
+  
+  var chart = sheet.newChart()
+    .setChartType(Charts.ChartType.LINE)
+    .addRange(sheet.getRange(1, 1, data.length, 2))
+    .setPosition(1, 3, 0, 0)
+    .build();
+  
+  sheet.insertChart(chart);
+}
+
+function discreteFourierTransform() {
+  var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = spreadsheet.getActiveSheet();
+  var dataRange = sheet.getDataRange();
+  var values = dataRange.getValues();
+  
+  var numRows = values.length;
+  var numCols = values[0].length;
+  
+  // 実数部と虚数部を格納する配列を作成
+  var realPart = new Array(numCols).fill(0);
+  var imagPart = new Array(numCols).fill(0);
+  
+  // DFT計算
+  for (var k = 0; k < numCols; k++) {
+    for (var n = 0; n < numRows; n++) {
+      var angle = (2 * Math.PI * k * n) / numRows;
+      realPart[k] += values[n][0] * Math.cos(angle);
+      imagPart[k] -= values[n][0] * Math.sin(angle);
+    }
+  }
+  
+  // 結果を別のシートに出力
+  var outputSheet = spreadsheet.getSheetByName("DFT_Result"); // 結果を出力するシートの名前を指定
+  if (!outputSheet) {
+    outputSheet = spreadsheet.insertSheet("DFT_Result");
+  }
+  
+  var outputValues = [];
+  for (var k = 0; k < numCols; k++) {
+    outputValues.push([realPart[k], imagPart[k]]);
+  }
+  
+  outputSheet.getRange(1, 1, numCols, 2).setValues(outputValues);
+}
