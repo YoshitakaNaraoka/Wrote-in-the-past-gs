@@ -1,12 +1,5 @@
 function doPost(e) {
 
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("シート1");
-  
-  // 送信されてくるJSONデータ　{"ID":XXXX,"temp":XXXXX}　から、各要素を取り出す
-  var params = JSON.parse(e.postData.getDataAsString());
-  var id = params.ID;
-  var temp = params.temp;
-
   //そのままではjsonとして値の取り出しができない(undefinedに)
   console.log(response["appName"]);
   //そのままではスクリプトで処理できないのでparseする
@@ -35,22 +28,6 @@ json.forEach((obj)=>{
     });
   });
   
-}
-
-function doPost1(e) {
-
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('a');
-  
-  // 送信されてくるJSONデータ　{"temp_1":XXXX,"temp_2":XXXXX,...}　から、各要素を取り出す
-  var params = JSON.parse(e.postData.getDataAsString());
-  var id = params.ID;
-  var temp = params.temp;
-
-  // データをシートに追加
-  sheet.insertRows(2,1);  // 2行1列目に列を挿入する
-  sheet.getRange(2, 1).setValue(new Date());     // 受信日時を記録
-  sheet.getRange(2, 2).setValue(id);     // temp_1を記録
-  sheet.getRange(2, 3).setValue(temp);     // temp_2を記録
 }
 
 function doPost2(e){
@@ -113,11 +90,7 @@ function doPost2(e){
   newSheet.insertChart(myChart);
 }
 
-function myFunction() {
-
-  const spreadsheetId = '1QENCIAzqhwevjOr2r8m2tagcoSZGK6Inj3E40HmNBnY';
-  const spreadsheet = SpreadsheetApp.openById(spreadsheetId);
-  const sheet = spreadsheet.getSheetByName("シート3");
+function JSONFOREACH() {
 
   const json = [
     {
@@ -141,10 +114,7 @@ function myFunction() {
 }
 
 function myFunction5() {
-  
-  const sheet5 = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("シート1");
-  var params5 = JSON.parse(e.postData.getDataAsString());
-  const json5 = []
+  const json = []
   json.forEach((obj)=>{
     let lastRow = sheet.getLastRow()+1;
     Object.keys(obj).forEach((key, index)=>{
@@ -154,11 +124,6 @@ function myFunction5() {
 }
 
 function myFunction6(e) {
-
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("シート4");
-  var params = JSON.parse(e.postData.getDataAsString());
-  var id = params.ID;
-  var temp = params.temp;
   const json = [
     {
       'id': id,
@@ -175,16 +140,11 @@ function myFunction6(e) {
 }
 
 function doPost(e) {
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("シート4");
-  var params = JSON.parse(e.postData.getDataAsString());
-  var id = params.ID;
-  var temp = params.temp;
-  
+
   for(i=0;i<json["params"].length;i++){
   jsonArray[i]=[
     json["params"][i]["id"],
-    json["params"][i]["temp"],
-    //json["members"][i]["city"]
+    json["params"][i]["temp"]
   ];
   }
   
@@ -195,10 +155,6 @@ function doPost(e) {
 }
 
 function doPost(e) {
-  // スプレッドシートオブジェクトを取得
-  var ss = SpreadsheetApp.getActive();
-  var sheet = ss.getActiveSheet();
-  var postData = JSON.parse(e.postData.getDataAsString());
   var colNames = sheet.getRange("1:1").getValues()[0]
   var lastRow = sheet.getLastRow();
   postData["postDate"] = new Date();
@@ -221,7 +177,6 @@ function doPost(e) {
 
 function doPost(e) {
   // スプレッドシートオブジェクトを取得
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("シート1");
   var postData = JSON.parse(e.postData.getDataAsString());
   var colNames = sheet.getRange("1:1").getValues()[0]
   var lastRow = sheet.getLastRow();
@@ -243,33 +198,7 @@ function doPost(e) {
   }
 }
 
-function doPost(e) {
-
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('a');
-  
-  // 送信されてくるJSONデータ　{"temp_1":XXXX,"temp_2":XXXXX,...}　から、各要素を取り出す
-  var params = JSON.parse(e.postData.getDataAsString());
-  var id = params.ID;
-  var temp = params.temp;
-
-  // データをシートに追加
-  sheet.insertRows(2,1);  // 2行1列目に列を挿入する
-  sheet.getRange(2, 1).setValue(new Date());     // 受信日時を記録
-  sheet.getRange(2, 2).setValue(id);     // temp_1を記録
-  sheet.getRange(2, 3).setValue(temp);     // temp_2を記録
-}
-
-function doPost(e) {
-
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName('a');
-  
-  // 送信されてくるJSONデータ　{"temp_1":XXXX,"temp_2":XXXXX,...}　から、各要素を取り出す
-  var params = JSON.parse(e.postData.getDataAsString());
-  var id = params.ID;
-  var temp = params.temp;
-
-  // データをシートに追加
-  //sheet.insertRows(2,1);  // 2行1列目に列を挿入する
+function JSONFOREACH2() {
   json.forEach((obj)=>{
     let lastRow = sheet.getLastRow()+1;
     Object.keys(obj).forEach((params, index)=>{
@@ -279,25 +208,6 @@ function doPost(e) {
 }
 
 function doPost(e) {
-
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("シート1");
-  
-  // 送信されてくるJSONデータ　{"ID":XXXX,"temp":XXXXX}　から、各要素を取り出す
-  var params = JSON.parse(e.postData.getDataAsString());
-  // 配列の中身はC++のコードと紐づいている必要がある
-  const jsonArray = [params.date,params.ID,params.temp,params.name];
-
-  // データをシートに追加
-  sheet.insertRows(2,1);  // 2行1列目に列を挿入する
-  sheet.getRange(2, 1).setValue(jsonArray[0]);     // 受信日時を記録
-  sheet.getRange(2, 2).setValue(jsonArray[1]);     // IDを記録
-  sheet.getRange(2, 3).setValue(jsonArray[2]);     // tempを記録
-  sheet.getRange(2, 4).setValue(jsonArray[3]);
-}
-
-function doPost(e) {
-
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheetByName("極座標変換");
   
   // 送信されてくるJSONデータ　{"ID":XXXX,"temp":XXXXX}　から、各要素を取り出す
   var params = JSON.parse(e.postData.getDataAsString());
@@ -320,37 +230,14 @@ function doPost(e) {
 }
 
 function myFunction2() {
-  var spreadsheet = SpreadsheetApp.getActive();
-  spreadsheet.getRange('A1:A10').activate()
-  .shiftRowGroupDepth(1);
+  sheet.getRange('A1:A10').activate().shiftRowGroupDepth(1);
   //列のグループ化
   spreadsheet.getActiveRangeList().setBorder(true, true, true, true, null, null, '#000000', SpreadsheetApp.BorderStyle.SOLID);
-};
-
-function myFunction3() {
-  var spreadsheet = SpreadsheetApp.getActive();
-  spreadsheet.getActiveSheet().getRowGroup(11, 1).collapse();
+  sheet.getActiveSheet().getRowGroup(11, 1).collapse();
   //.collapse() は，グループを折り畳む
 };
 
-function addSheet4() {
-  //コンテナバインド型で紐付いたスプレッドシートを読み込む
-  var mySpreadSheet = SpreadsheetApp.getActiveSpreadsheet();
-  // シート名を取得
-  var sheetName = dayjs.dayjs().format('YYYY.MM');
-  
-  // シートを取得
-  var targetSheet = mySpreadSheet.getSheetByName(sheetName);
-  if (targetSheet == null) {
-    // スプレッドシートに新しいシートを追加挿入
-    // 名前を指定
-    mySpreadSheet.insertSheet(sheetName);
-  }
-};
-
 function calculateDLVOPotential() {
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-  
   // パラメータの取得
   var A = sheet.getRange("A1").getValue(); // 斥力の強度を表す定数
   var k = sheet.getRange("A2").getValue(); // 距離に関連する定数
@@ -389,13 +276,6 @@ function simulateIntegrateProcess(n_integrateStepSize) {
   sheet_integrate.getCurrentCell().setFormula('=SEQUENCE("'+n_integrateStepSize+'",1,0,1)');
 };
 
-function myFunction() {
-  var spreadsheet = SpreadsheetApp.getActive();
-  spreadsheet.getRange('A1').activate();
-  spreadsheet.getCurrentCell().setValue('1');
-  spreadsheet.getRange('A2').activate();
-};
-
 function a() {
   var spreadsheet = SpreadsheetApp.getActive();
   spreadsheet.getRange('A1').activate();
@@ -425,7 +305,6 @@ function macro1() {
 };
 
 function createLennardJonesGraph() {
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   
   // パラメータの設定
   var epsilon = 1.0; // ε（エネルギースケール）
@@ -532,80 +411,8 @@ function calculateGreensFunction() {
   sheet_Green.insertChart(chart_Green);
 }
 
-function getTodayDate() {
-  //Dateオブジェクトからインスタンスを生成
-  const today = new Date();
-  //メソッドを使って、本日の日付を取得
-  const year = today.getFullYear(); //年
-  const month = today.getMonth()+1; //月
-  let this_month = String("yyyy.mm");
-}
-
-function addSheet3() {
-//コンテナバインド型で紐付いたスプレッドシートを読み込む
-let mySheet = SpreadsheetApp.getActiveSpreadsheet();
-//追加挿入したシートに名前を設定
-mySheet.insertSheet().setName(this_month);
-}
-
-function getTodayDate() {
-//Dateオブジェクトからインスタンスを生成
-const today = new Date();
-
-//メソッドを使って、本日の日付を取得
-const year = today.getFullYear(); //年
-const month = today.getMonth()+1; //月
-}
-
-function numberToString() {
-//数値型の変数を定義する
-let num = month;
-//そのまま数値としてログ表示
-Logger.log(num);
-//toStringメソッドで数値を文字列に変換
-Logger.log(num.toString());
-}
-
 //追加挿入したシートに名前を設定
 newSheet.setName('num');
-
-function addSheet3() {
-//コンテナバインド型で紐付いたスプレッドシートを読み込む
-let mySheet = SpreadsheetApp.getActiveSpreadsheet();
-//スプレッドシートに新しいシートを追加挿入
-let newSheet = mySheet.insertSheet();
-
-function getTodayDate() {
-//Dateオブジェクトからインスタンスを生成
-const today = new Date();
-
-//メソッドを使って、本日の日付を取得
-const year = today.getFullYear(); //年
-const month = today.getMonth()+1; //月
-
-//追加挿入したシートに名前を設定
-newSheet.setName('month');
-}}
-
-function addSheet3() {
-//コンテナバインド型で紐付いたスプレッドシートを読み込む
-let mySheet = SpreadsheetApp.getActiveSpreadsheet();
-//スプレッドシートに新しいシートを追加挿入
-let newSheet = mySheet.insertSheet();
-let sheetName = mySheet.getSheetName();
-
-function getTodayDate() {
-//Dateオブジェクトからインスタンスを生成
-const today = new Date();
-//メソッドを使って、本日の日付を取得
-const year = today.getFullYear(); //年
-const month = today.getMonth()+1; //月
-var this_month = String("yyyy.m");
-}
-
-//追加挿入したシートに名前を設定
-Sheet.setName("this_month");
-}
 
 function drawClothoidCurve(a, b, stepSize) {
   var canvas = DocumentApp.getActiveDocument().getBody().appendCanvas(600, 600);
@@ -636,7 +443,6 @@ function testClothoidCurve() {
 }
 
 function drawFeynmanDiagram() {
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   
   // グラフ描画の準備
   var ui = SpreadsheetApp.getUi();
@@ -695,7 +501,6 @@ function drawLogisticMapChart() {
   
   var data = generateLogisticMapData(r, x0, iterations);
   
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   sheet.clear();
   sheet.getRange(1, 1, data.length, 2).setValues(data);
   
@@ -709,8 +514,6 @@ function drawLogisticMapChart() {
 }
 
 function discreteFourierTransform() {
-  var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-  var sheet = spreadsheet.getActiveSheet();
   var dataRange = sheet.getDataRange();
   var values = dataRange.getValues();
   
@@ -743,3 +546,15 @@ function discreteFourierTransform() {
   
   outputSheet.getRange(1, 1, numCols, 2).setValues(outputValues);
 }
+
+const spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+const sheet = spreadsheet.getActiveSheet();
+const today = new Date();
+const year = today.getFullYear(); //年
+const month = today.getMonth()+1; //月
+//toStringメソッドで数値を文字列に変換
+const num_to_string = Logger.log(num.toString());
+
+const params = JSON.parse(e.postData.getDataAsString());
+const id = params.ID;
+const temp = params.temp;
