@@ -4,7 +4,6 @@
 
 
 function simulateCellularAutomaton() {
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   var startRow = 1; // データの開始行
   var startColumn = 1; // データの開始列
   var numRows = sheet.getLastRow() - startRow + 2; // データの行数

@@ -17,13 +17,11 @@ var wienerProcess = simulateWienerProcess(n_Wiener);
 
 //シミュレーション結果の出力
 //getRange(行番号, 列番号, 行数, 列数)
-//console.log(wienerProcess);
-//var spreadsheet = SpreadsheetApp.getActive();
+
   sheet_Wiener.getRange('A1').activate();
   sheet_Wiener.getCurrentCell().setFormula('=SEQUENCE("'+n_Wiener+'",1,0,1)');
-const sheetgetrange1 = sheet_Wiener.getRange(1,1,n_Wiener).activate();
-const sheetgetrange2 = sheet_Wiener.getRange(1,2,n_Wiener).activate();
-//var sheet = spreadsheet.getActiveSheet();
+  const sheetgetrange1 = sheet_Wiener.getRange(1,1,n_Wiener).activate();
+  const sheetgetrange2 = sheet_Wiener.getRange(1,2,n_Wiener).activate();
 var chart_Wiener = sheet_Wiener.newChart()
   .asLineChart()
   .addRange(sheetgetrange1)

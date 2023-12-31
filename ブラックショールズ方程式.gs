@@ -1,5 +1,4 @@
 function calculateOptionPrice() {
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   
   // パラメータの取得
   var S = sheet.getRange("A1").getValue(); // 現在の株価
@@ -43,7 +42,6 @@ function erf(x) {
 }
 
 function createOptionPriceGraph() {
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   
   // パラメータの取得
   var S = sheet.getRange("A1").getValue(); // 株価

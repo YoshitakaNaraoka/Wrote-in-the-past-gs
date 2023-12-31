@@ -1,5 +1,4 @@
 function generateMandelbrotSet() {
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
 
   // パラメータの設定
   var width = 800; // 生成するイメージの幅
@@ -45,7 +44,6 @@ function calculateMandelbrotIterations(x, y, maxIterations) {
 }
 
 function generateFractalImage() {
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   
   // 画像のサイズとパラメータの設定
   var width = 800; // 画像の幅

@@ -4,7 +4,7 @@ function poissonDistribution(lambda, n) {
   var numerator = Math.exp(-lambda) * Math.pow(lambda, n);
   var denominator = factorial(n);
   var probability = numerator / denominator;
-  var rangeactivate = sheet_PoissonDistribution.getRange(100,2,1).activate();
+  var rangeactivate = sheet.getRange(100,2,1).activate();
   sheet_PoissonDistribution.getActiveRangeList().setValue(probability);
   //poissonDistribution.push(probability);
   //Logger.log("P(X = " + x + ") = " + probability);
@@ -21,8 +21,8 @@ function factorial(n) {
   }
 }
 
-sheet_PoissonDistribution.getRange('A1').activate();
-sheet_PoissonDistribution.getCurrentCell().setFormula('=SEQUENCE(100,1,0,1)');
+sheet.getRange('A1').activate();
+sheet.getCurrentCell().setFormula('=SEQUENCE(100,1,0,1)');
 const sheetgetrange5 = sheet_PoissonDistribution.getRange(1,1,n).activate();
 const sheetgetrange6 = sheet_PoissonDistribution.getRange(1,2,n).activate();
 

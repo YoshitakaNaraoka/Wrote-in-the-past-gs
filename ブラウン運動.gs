@@ -1,11 +1,4 @@
 
-function addSheet2() {
-  var spreadsheet = SpreadsheetApp.getActive();
-  spreadsheet.insertSheet(1);
-  SpreadsheetApp.getActive();
-  spreadsheet.getActiveSheet().setName('BrownianMotion');
-}
-
 function simulateBrownianMotion(numSteps, stepSize) {
   var position = 0; // 初期位置
   
@@ -32,7 +25,6 @@ var finalPosition = simulateBrownianMotion(numSteps, stepSize);
 //console.log(finalPosition);
 
 function createBrownianMotionGraph() {
-  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   
   // パラメータの設定
   var numPoints = 1000; // データポイントの数

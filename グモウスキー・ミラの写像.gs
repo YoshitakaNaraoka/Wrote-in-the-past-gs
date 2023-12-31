@@ -28,7 +28,6 @@ function testGumowskiMirnaMap() {
   var data = generateGumowskiMirnaMap(a, b, c, d, iterations, x0, y0);
 
   // データの表示
-  //var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
   sheet_GumowskiMirna.getRange(1, 1, data.length, 2).setValues(data);
 }
 
