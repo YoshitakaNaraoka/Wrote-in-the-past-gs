@@ -31,7 +31,6 @@ json.forEach((obj)=>{
 }
 
 function doPost2(e){
-  var param2 = e.postData.getDataAsString();//データ取得
   var ary2 = param2.split(',');//取得データをカンマで区切ってaryに格納
  
   var fileName = ary2[0];//aryの最初はファイル名(SpreadSheet)
@@ -51,8 +50,7 @@ function doPost2(e){
   }
   DriveApp.getRootFolder().removeFile(SS);//ルートに作成したスプレッドシートは不要なので削除
  
-  var ary_length = ary.length;
-  var n_of_data = Math.round((ary_length - 3) / n_of_colms); //データの行数(組数)
+  var n_of_data = Math.round((ary.length - 3) / n_of_colms); //データの行数(組数)
  
   var spreadsheet = SpreadsheetApp.openById(SS_ID);//あらためてSpreadSheetを開く
   var newSheet = spreadsheet.getSheetByName(sheetName);//同じシート名があるかチェック
@@ -176,8 +174,6 @@ function doPost(e) {
 }
 
 function doPost(e) {
-  // スプレッドシートオブジェクトを取得
-  var postData = JSON.parse(e.postData.getDataAsString());
   var colNames = sheet.getRange("1:1").getValues()[0]
   var lastRow = sheet.getLastRow();
   postData["postDate"] = new Date();
@@ -257,7 +253,6 @@ function simulateIntegrateProcess(n_integrateStepSize) {
     var y = sheet_integrate.getRange("B4:C4").activate();
     var y = '${y}';
     var integrate_x_y = 1/(y+1) * Math.pow(x,y+1);
-    let rangeactivate = sheet_integrate.getRange(i+1,5,1).activate();
     //sheet_integrate.getRange('F2').activate();
     //sheet_integrate.getCurrentCell().setFormula('=SUM(E2:E301)');
     sheet_integrate.getRange('$G2').activate();
@@ -268,23 +263,15 @@ function simulateIntegrateProcess(n_integrateStepSize) {
 
   return integrateProcess;
 
-  let n_integrateStepSize = 300;
-  let degree = 6;
-  var integrateProcess = simulateIntegrateProcess(n_integrateStepSize);
-  
-  sheet_integrate.getRange('D2').activate();
-  sheet_integrate.getCurrentCell().setFormula('=SEQUENCE("'+n_integrateStepSize+'",1,0,1)');
 };
 
 function a() {
-  var spreadsheet = SpreadsheetApp.getActive();
-  spreadsheet.getRange('A1').activate();
-  spreadsheet.getCurrentCell().setFormula('=SEQUENCE(300,1,0,1)');
-  spreadsheet.getRange('A1:B300').activate();
-  var sheet = spreadsheet.getActiveSheet();
+  sheet.getRange('A1').activate();
+  sheet.getCurrentCell().setFormula('=SEQUENCE(300,1,0,1)');
+  sheet.getRange('A1:B300').activate();
   var chart = sheet.newChart()
   .asLineChart()
-  .addRange(spreadsheet.getRange('A1:B300'))
+  .addRange(sheet.getRange('A1:B300'))
   .setMergeStrategy(Charts.ChartMergeStrategy.MERGE_COLUMNS)
   .setTransposeRowsAndColumns(false)
   .setNumHeaders(0)
@@ -297,11 +284,11 @@ function a() {
 };
 
 function macro1() {
-  var spreadsheet = SpreadsheetApp.getActive();
-  spreadsheet.getCurrentCell().offset(0, -4).activate();
-  spreadsheet.getCurrentCell().setFormulaR1C1('=R[0]C[-1]/R[0]C[-3]');
-  spreadsheet.getCurrentCell().offset(-1, 0).activate();
-  spreadsheet.getCurrentCell().setFormulaR1C1('=R[1]C[-1]+R[0]C[-1]');
+ 
+  sheet.getCurrentCell().offset(0, -4).activate();
+  sheet.getCurrentCell().setFormulaR1C1('=R[0]C[-1]/R[0]C[-3]');
+  sheet.getCurrentCell().offset(-1, 0).activate();
+  sheet.getCurrentCell().setFormulaR1C1('=R[1]C[-1]+R[0]C[-1]');
 };
 
 function createLennardJonesGraph() {
@@ -362,10 +349,9 @@ function calculateImpulseResponse() {
   }
   
   // 結果をシートに出力
-  var range_impulse = sheet_Impulse.getRange(1, 1, outputSignal.length, 1);
-  range_impulse.setValues(outputSignal.map(function(value) {
+  sheet_Impulse.getRange(1, 1, outputSignal.length, 1).setValues(outputSignal.map(function(value) {
     return [value];
-  }));
+  }));;
 }
 
 function calculateGreensFunction() {
@@ -514,8 +500,7 @@ function drawLogisticMapChart() {
 }
 
 function discreteFourierTransform() {
-  var dataRange = sheet.getDataRange();
-  var values = dataRange.getValues();
+  var values = sheet.getDataRange().getValues();
   
   var numRows = values.length;
   var numCols = values[0].length;
