@@ -17,8 +17,6 @@ var wienerProcess = simulateWienerProcess(n);
 console.log(wienerProcess);
 
 function cellchoice() {
-  var sheet = SpreadsheetApp.getActiveSheet();
-  var lastRow = sheet.getLastRow();
   var ary1 = sheet.getRange("A1:B100").getValues();
   for (i=0; i<=ary1.length-1; i++) {
     ary1[i][2] = ary1[i][0] * ary1[i][1]

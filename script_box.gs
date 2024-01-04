@@ -154,7 +154,6 @@ function doPost(e) {
 
 function doPost(e) {
   var colNames = sheet.getRange("1:1").getValues()[0]
-  var lastRow = sheet.getLastRow();
   postData["postDate"] = new Date();
   postData["notSolved"] = 0;
   var Others={}

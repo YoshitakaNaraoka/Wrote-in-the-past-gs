@@ -23,8 +23,7 @@ function generateMandelbrotSet() {
   }
 
   // イメージデータをセルに出力
-  var range = sheet.getRange(1, 1, height, width);
-  range.setValues(imageData);
+  return sheet.getRange(1, 1, height, width).setValues(imageData);
 }
 
 function calculateMandelbrotIterations(x, y, maxIterations) {
@@ -62,8 +61,7 @@ function generateFractalImage() {
   }
   
   // 画像データをシートに出力
-  var range = sheet.getRange(1, 1, height, width);
-  range.setValues(imageData);
+  return sheet.getRange(1, 1, height, width).setValues(imageData);
 }
 
 function generatePixelValue(x, y, maxIterations) {
@@ -79,9 +77,7 @@ function generatePixelValue(x, y, maxIterations) {
   var pixelValue = calculateMandelbrotIterations(zx, zy, maxIterations);
   
   // ピクセル値の精製
-  var refinedValue = refinePixelValue(pixelValue, maxIterations);
-  
-  return refinedValue;
+  return refinePixelValue(pixelValue, maxIterations);
 }
 
 function calculateMandelbrotIterations(x, y, maxIterations) {
@@ -102,8 +98,5 @@ function calculateMandelbrotIterations(x, y, maxIterations) {
 
 function refinePixelValue(pixelValue, maxIterations) {
   // ピクセル値の精製ロジック（例としてトーンマッピングを使用）
-  var toneMappingValue = pixelValue / maxIterations * 255;
-  var refinedValue = Math.round(toneMappingValue);
-  
-  return refinedValue;
+  return Math.round(pixelValue / maxIterations * 255);
 }

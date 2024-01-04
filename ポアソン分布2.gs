@@ -20,8 +20,7 @@ function factorial(n) {
   }
 }
 
-sheet.getRange('A1').activate();
-sheet.getCurrentCell().setFormula('=SEQUENCE(100,1,0,1)');
+sheet.getRange('A1').activate().getCurrentCell().setFormula('=SEQUENCE(100,1,0,1)');
 const sheetgetrange5 = sheet_PoissonDistribution.getRange(1,1,n).activate();
 const sheetgetrange6 = sheet_PoissonDistribution.getRange(1,2,n).activate();
 

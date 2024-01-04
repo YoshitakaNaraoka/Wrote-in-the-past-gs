@@ -37,7 +37,7 @@ function simulateCellularAutomaton() {
   }
 
   // 結果をセルに表示
-  var outputRange = sheet.getRange(startRow, startColumn, numRows, numColumns);
+  var outputRange = get(startRow, startColumn, numRows, numColumns);
   outputRange.setValues(data);
 }
 
