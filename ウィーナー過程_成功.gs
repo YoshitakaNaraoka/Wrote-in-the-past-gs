@@ -21,7 +21,7 @@ var wienerProcess = simulateWienerProcess(n_Wiener);
   sheet_Wiener.getCurrentCell().setFormula('=SEQUENCE("'+n_Wiener+'",1,0,1)');
   const sheetgetrange1 = sheet_Wiener.getRange(1,1,n_Wiener).activate();
   const sheetgetrange2 = sheet_Wiener.getRange(1,2,n_Wiener).activate();
-var chart_Wiener = sheet_Wiener.newChart()
+  var chart_Wiener = sheet_Wiener.newChart()
   .asLineChart()
   .addRange(sheetgetrange1)
   .addRange(sheetgetrange2)
@@ -33,9 +33,7 @@ var chart_Wiener = sheet_Wiener.newChart()
   .setOption('isStacked', 'false')
   .setPosition(285, 3, 17, 16)
   .build();
-  sheet_Wiener.insertChart(chart_Wiener);
-
-//var rowcollapse1 = sheetgetrange1.shiftRowGroupDepth(1);
+sheet_Wiener.insertChart(chart_Wiener);
 
 function cellchoice() {
   var ary1 = sheet.getRange("A1:B100").getValues();

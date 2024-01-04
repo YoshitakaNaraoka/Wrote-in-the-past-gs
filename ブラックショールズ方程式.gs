@@ -65,8 +65,7 @@ function createOptionPriceGraph() {
   }
   
   // グラフ作成
-  var chart = sheet.newChart()
-    .setChartType(Charts.ChartType.LINE)
+    chart.setChartType(Charts.ChartType.LINE)
     .addRange(sheet.getRange(1, 1, data.length, 2))
     .setPosition(1, 4, 0, 0)
     .build();

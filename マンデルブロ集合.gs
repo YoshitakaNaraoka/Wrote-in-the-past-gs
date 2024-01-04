@@ -76,8 +76,8 @@ function generatePixelValue(x, y, maxIterations) {
   var zy = y / zoom - height / 2 + centerY;
   var pixelValue = calculateMandelbrotIterations(zx, zy, maxIterations);
   
-  // ピクセル値の精製
-  return refinePixelValue(pixelValue, maxIterations);
+  // ピクセル値の精製ロジック（例としてトーンマッピングを使用）
+  return Math.round(pixelValue / maxIterations * 255);
 }
 
 function calculateMandelbrotIterations(x, y, maxIterations) {
@@ -94,9 +94,4 @@ function calculateMandelbrotIterations(x, y, maxIterations) {
   }
 
   return iteration;
-}
-
-function refinePixelValue(pixelValue, maxIterations) {
-  // ピクセル値の精製ロジック（例としてトーンマッピングを使用）
-  return Math.round(pixelValue / maxIterations * 255);
 }

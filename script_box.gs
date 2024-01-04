@@ -486,8 +486,8 @@ function drawLogisticMapChart() {
   sheet.clear();
   sheet.getRange(1, 1, data.length, 2).setValues(data);
   
-  var chart = sheet.newChart()
-    .setChartType(Charts.ChartType.LINE)
+  
+    chart.setChartType(Charts.ChartType.LINE)
     .addRange(sheet.getRange(1, 1, data.length, 2))
     .setPosition(1, 3, 0, 0)
     .build();
@@ -541,3 +541,4 @@ const temp = params.temp;
 
 const lastRow = sheet.getLastRow();
 const get = sheet.getDataRange().getValues();
+const chart = sheet.newChart();
