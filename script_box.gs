@@ -432,10 +432,7 @@ function drawFeynmanDiagram() {
   
   // グラフ描画の準備
   var ui = SpreadsheetApp.getUi();
-  var drawing = sheet.newDrawing();
-  
-  // ダイアグラムの描画
-  var diagram = drawing
+  var drawing = sheet.newDrawing()
     .appendShape(SpreadsheetApp.drawing.ShapeType.LINE, 0, 0, 100, 100)
     .appendShape(SpreadsheetApp.drawing.ShapeType.LINE, 100, 0, 0, 100)
     .appendShape(SpreadsheetApp.drawing.ShapeType.ELLIPSE, 0, 0, 100, 100)
@@ -500,7 +497,6 @@ function drawLogisticMapChart() {
 }
 
 function discreteFourierTransform() {
-  var values = sheet.getDataRange().getValues();
   
   var numRows = values.length;
   var numCols = values[0].length;
@@ -543,3 +539,6 @@ const num_to_string = Logger.log(num.toString());
 const params = JSON.parse(e.postData.getDataAsString());
 const id = params.ID;
 const temp = params.temp;
+
+const lastRow = sheet.getLastRow();
+const get = sheet.getDataRange().getValues();

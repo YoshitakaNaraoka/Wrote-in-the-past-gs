@@ -3,8 +3,7 @@ function simulateWienerProcess(n_Wiener) {
   for (var i = 1; i < n_Wiener; i++) {
     var randomValue = Math.random() * 2 - 1; // -1から1までの一様乱数
     var nextValue = wienerProcess[i-1] + randomValue;
-    let rangeactivate = sheet_Wiener.getRange(i,2,1).activate();
-    sheet_Wiener.getActiveRangeList().setValue(nextValue);
+    rangeactivate = sheet_Wiener.getRange(i,2,1).activate().getActiveRangeList().setValue(nextValue);
     wienerProcess.push(nextValue);
   }
   
@@ -39,8 +38,6 @@ var chart_Wiener = sheet_Wiener.newChart()
 //var rowcollapse1 = sheetgetrange1.shiftRowGroupDepth(1);
 
 function cellchoice() {
-  var sheet = SpreadsheetApp.getActiveSheet();
-  var lastRow = sheet.getLastRow();
   var ary1 = sheet.getRange("A1:B100").getValues();
   for (i=0; i<=ary1.length-1; i++) {
     ary1[i][2] = ary1[i][0] * ary1[i][1]

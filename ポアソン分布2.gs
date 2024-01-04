@@ -4,8 +4,7 @@ function poissonDistribution(lambda, n) {
   var numerator = Math.exp(-lambda) * Math.pow(lambda, n);
   var denominator = factorial(n);
   var probability = numerator / denominator;
-  var rangeactivate = sheet.getRange(100,2,1).activate();
-  sheet_PoissonDistribution.getActiveRangeList().setValue(probability);
+  sheet_PoissonDistribution.getRange(100,2,1).activate().getActiveRangeList().setValue(probability);
   //poissonDistribution.push(probability);
   //Logger.log("P(X = " + x + ") = " + probability);
   return numerator;
@@ -42,6 +41,5 @@ var chart_PoissonDistribution = sheet_PoissonDistribution.newChart()
 
 
 function testPoissonDistribution() {
-  var probability = poissonDistribution(lambda, x);
-  
+  return poissonDistribution(lambda, x);
 }
