@@ -2,7 +2,7 @@ function generateGumowskiMirnaMap(a, b, c, d, iterations, x0, y0) {
   var x = x0;
   var y = y0;
 
-  var data = [];
+  arr;
   for (var i = 0; i < iterations; i++) {
     var xn = (a * x + y + (b * x * x * x) - (c * x * y * y) + (d * x * x * y)) % 1;
     var yn = (-x + (c * x * x * x) + (d * x * y * y) + y) % 1;

@@ -55,12 +55,12 @@ function createOptionPriceGraph() {
   var stepSize = K / 10;
   
   // グラフデータの作成
-  var data = [];
+  arr;
   var x = xMin;
   while (x <= xMax) {
     var T = x / S; // 満期日（年単位）
     var optionPrice = calculateOptionPrice(S, K, r, sigma, T);
-    data.push([x, optionPrice]);
+    arr.push([x, optionPrice]);
     x += stepSize;
   }
   

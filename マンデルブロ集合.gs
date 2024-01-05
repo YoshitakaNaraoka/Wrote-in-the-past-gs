@@ -10,7 +10,7 @@ function generateMandelbrotSet() {
   var maxIterations = 100; // 最大反復回数
 
   // イメージデータの作成
-  var imageData = [];
+  arr;
   for (var y = 0; y < height; y++) {
     var row = [];
     var imaginaryPart = yMin + (yMax - yMin) * y / height;
@@ -19,11 +19,11 @@ function generateMandelbrotSet() {
       var iterations = calculateMandelbrotIterations(realPart, imaginaryPart, maxIterations);
       row.push(iterations);
     }
-    imageData.push(row);
+    arr.push(row);
   }
 
   // イメージデータをセルに出力
-  return sheet.getRange(1, 1, height, width).setValues(imageData);
+  return sheet.getRange(1, 1, height, width).setValues(arr);
 }
 
 function calculateMandelbrotIterations(x, y, maxIterations) {
@@ -50,18 +50,18 @@ function generateFractalImage() {
   var maxIterations = 100; // 最大反復回数
   
   // 画像データの作成
-  var imageData = [];
+  arr;
   for (var y = 0; y < height; y++) {
     var row = [];
     for (var x = 0; x < width; x++) {
       var pixelValue = generatePixelValue(x, y, maxIterations);
       row.push(pixelValue);
     }
-    imageData.push(row);
+    arr.push(row);
   }
   
   // 画像データをシートに出力
-  return sheet.getRange(1, 1, height, width).setValues(imageData);
+  return sheet.getRange(1, 1, height, width).setValues(arr);
 }
 
 function generatePixelValue(x, y, maxIterations) {

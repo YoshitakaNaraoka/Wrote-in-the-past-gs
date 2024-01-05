@@ -35,11 +35,11 @@ function createBrownianMotionGraph() {
   var initialY = 0;
   
   // データの作成
-  var data = [];
+  arr;
   var x = initialX;
   var y = initialY;
   for (var i = 0; i < numPoints; i++) {
-    data.push([x, y]);
+    arr.push([x, y]);
     x += randomStep(stepSize);
     y += randomStep(stepSize);
   }

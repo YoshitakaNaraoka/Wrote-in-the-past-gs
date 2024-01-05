@@ -9,30 +9,29 @@
 
 function simulateCellularAutomaton(rule, numGenerations) {
   var numCells = 100; // セルの数
-  var cells = []; // セルの状態を格納する配列
+  arr; // セルの状態を格納する配列
 
   // 初期状態の設定
   for (var i = 0; i < numCells; i++) {
     if (i === Math.floor(numCells / 2)) {
-      cells[i] = 1; // 初期状態の中央のセルを生存とする
+      arr[i] = 1; // 初期状態の中央のセルを生存とする
     } else {
-      cells[i] = 0; // それ以外のセルを死亡とする
+      arr[i] = 0; // それ以外のセルを死亡とする
     }
   }
 
   // ルールに基づいて状態を更新
   for (var generation = 0; generation < numGenerations; generation++) {
-    var newCells = [];
+    arr;
     for (var i = 0; i < numCells; i++) {
-      var left = cells[(i + numCells - 1) % numCells];
-      var center = cells[i];
-      var right = cells[(i + 1) % numCells];
-      newCells[i] = applyRule(left, center, right, rule);
+      var left = arr[(i + numCells - 1) % numCells];
+      var center = arr[i];
+      var right = arr[(i + 1) % numCells];
+      arr[i] = applyRule(left, center, right, rule);
     }
-    cells = newCells;
   }
 
-  return cells;
+  return arr[i];
 }
 
 
@@ -47,7 +46,5 @@ function simulateCellularAutomaton(rule, numGenerations) {
 
 
 function applyRule(left, center, right, rule) {
-  var pattern = "" + left + center + right;
-  var ruleIndex = parseInt(pattern, 2);
-  return parseInt(rule.charAt(ruleIndex));
+  return parseInt(rule.charAt(parseInt(left + center + right, 2)));
 }

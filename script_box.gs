@@ -62,9 +62,9 @@ function doPost2(e){
   var columnA_Vals = newSheet.getRange('A:A').getValues();
   var LastRow = columnA_Vals.filter(String).length;  //空白を除き、入力済の行数を取得
  
-  var ary2 = [];//シートに書き込むための配列
+  
   for(var i=0;i<n_of_data;i++){
-    ary2[i] = [];      //まず1次元の配列にして
+    arr[i] = [];      //まず1次元の配列にして
     for(var j=0;j<n_of_colms;j++){  //その中にさらにデータを格納して2次元にする
       ary2[i][j]=ary[i*n_of_colms + j + 3];//ary[0]はファイル名、1はシート名、2は列数なので3を足している
     }
@@ -112,8 +112,7 @@ function JSONFOREACH() {
 }
 
 function myFunction5() {
-  const json = []
-  json.forEach((obj)=>{
+  arr.forEach((obj)=>{
     let lastRow = sheet.getLastRow()+1;
     Object.keys(obj).forEach((key, index)=>{
         sheet.getRange(lastRow, index+1).setValue(obj[key]);
@@ -542,3 +541,4 @@ const temp = params.temp;
 const lastRow = sheet.getLastRow();
 const get = sheet.getDataRange().getValues();
 const chart = sheet.newChart();
+const arr = [];

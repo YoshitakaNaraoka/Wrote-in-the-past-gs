@@ -6,11 +6,11 @@
 function simulateCellularAutomaton() {
   var startRow = 1; // データの開始行
   var startColumn = 1; // データの開始列
-  var numRows = sheet.getLastRow() - startRow + 2; // データの行数
+  var numRows = lastRow - startRow + 2; // データの行数
   var numColumns = sheet.getLastColumn() - startColumn + 2; // データの列数
   
 
-  var numRows = sheet.getLastRow() - startRow + 1; // データの行数
+  var numRows = lastRow - startRow + 1; // データの行数
   var numColumns = sheet.getLastColumn() - startColumn + 1; // データの列数
 
 /*
@@ -26,28 +26,17 @@ function simulateCellularAutomaton() {
 
   // ルールに基づいて状態を更新
   for (var generation = 0; generation < numGenerations; generation++) {
-    var newData = [];
+    arr;
     for (var i = 0; i < numRows; i++) {
       var left = data[i][(numColumns + startColumn - 1) % numColumns];
       var center = data[i][(numColumns + startColumn) % numColumns];
       var right = data[i][(numColumns + startColumn + 1) % numColumns];
       newData[i] = applyRule(left, center, right, rule);
     }
-    data = newData;
+    data = arr;
   }
 
   // 結果をセルに表示
   var outputRange = get(startRow, startColumn, numRows, numColumns);
   outputRange.setValues(data);
-}
-
-/**
- * ルールに基づいて次の状態を計算する関数
- */
-
-
-function applyRule(left, center, right, rule) {
-  var pattern = "" + left + center + right;
-  var ruleIndex = parseInt(pattern, 2);
-  return parseInt(rule.charAt(ruleIndex));
 }
